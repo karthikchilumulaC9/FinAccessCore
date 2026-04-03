@@ -20,6 +20,7 @@ A secure, role-based financial record management system built with Spring Boot 4
 - [Technology Stack](#technology-stack)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Docker Deployment](#docker-deployment)
 - [Configuration](#configuration)
 - [Running the Application](#running-the-application)
 - [API Documentation](#api-documentation)
@@ -88,6 +89,72 @@ spring.datasource.password=your_mysql_password
 ```bash
 mvn clean install
 ```
+
+## 🐳 Docker Deployment
+
+### Quick Start with Docker
+
+The easiest way to run FinAccessCore is using Docker Compose, which sets up both the application and MySQL database automatically.
+
+#### Prerequisites
+- Docker Desktop (Windows/Mac) or Docker Engine (Linux)
+- Docker Compose v2.0+
+
+#### Run with Docker Compose
+
+```bash
+# Build and start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+```
+
+The application will be available at `http://localhost:8082` and MySQL at `localhost:3307`.
+
+#### What's Included
+
+- **Spring Boot Application** - Runs on port 8082
+- **MySQL Database** - Runs on port 3307 with auto-initialization
+- **Health Checks** - Automatic service health monitoring
+- **Persistent Storage** - MySQL data persists across restarts
+
+#### Default Credentials
+
+**Application**:
+- Admin Username: `admin`
+- Admin Password: `password123`
+
+**MySQL**:
+- Root Password: `rootpassword`
+- User: `finaccess_user`
+- Password: `finaccess_password`
+
+⚠️ **Change these credentials in production!**
+
+#### Docker Commands
+
+```bash
+# Start services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f app
+
+# Stop services
+docker-compose stop
+
+# Remove everything (clean slate)
+docker-compose down -v
+
+# Rebuild after code changes
+docker-compose up -d --build
+```
+
+For detailed Docker deployment instructions, see [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md).
 
 ## ⚙️ Configuration
 
@@ -625,10 +692,11 @@ export SERVER_PORT=8082
 
 ## 📖 Additional Documentation
 
-- [AUTHENTICATION.md](AUTHENTICATION.md) - Detailed authentication guide
-- [ARCHITECTURE.md](ARCHITECTURE.md) - System architecture overview
-- [API_CHANGES.md](API_CHANGES.md) - API changelog
-- [MYSQL_SETUP.md](MYSQL_SETUP.md) - Database setup guide
+- [API_DOCUMENTATION.md](API_DOCUMENTATION.md) - Complete API reference
+- [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md) - Docker deployment guide
+- [TECHNICAL_DECISIONS.md](TECHNICAL_DECISIONS.md) - Technical decisions and trade-offs
+- [AUTHENTICATION.md](AUTHENTICATION.md) - Detailed authentication guide (if exists)
+- [ARCHITECTURE.md](ARCHITECTURE.md) - System architecture overview (if exists)
 
 ## 🤝 Contributing
 
